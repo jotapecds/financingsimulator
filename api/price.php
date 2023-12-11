@@ -52,3 +52,74 @@ function calculatePriceTable($np, $pv, $pp, $t, $e) {
 
     return $matrizPrice;
 }
+
+function calculateFinancingCoefficient($t, $np) {
+    $taxa_corrigida = $t/100;
+    return $taxa_corrigida/(1-pow(1+$taxa_corrigida, -$np));
+}
+
+function calculateAppliedFactor($np, $t, $coef_financ, $e){
+    return fe($e, $t)/($np*$coef_financ);
+}
+
+function fe($e, $t){
+    return $e ? 1+$t : 1;
+}
+
+function calculateInterestRate($np,$pv,$pp,$e) {
+    $tolerancia = 0.0001;  
+    $t = 0.1; // Palpite inicial
+    $t0 = 0.0;
+
+    $funcao = 0; 
+    $derivada = 0;
+    $i = 0;
+    
+    while(abs($t0-$t) >= $tolerancia){
+        $t0 = $t;
+        $funcao = calcularValorFuncao($np, $pv, $pp, $t, $e);
+        $derivada = calcularValorDerivadaFuncao($np, $pv, $pp, $t, $e);
+        $t = $t - ($funcao / $derivada);
+        $i++;
+    }
+   
+    return $t;
+}
+
+function calcularValorFuncao($np, $pv, $pp, $t, $e){
+    $a = 0; 
+    $b = 0; 
+    $c = 0;
+
+    if($e) {
+        $a = pow(1 + $t, $np - 2);
+        $b = pow(1 + $t, $np - 1);
+        $c = pow(1 + $t, $np);
+
+        return ($pv*$t*$b) - ($pp/$np*($c - 1));
+    }
+    else {
+        $a = pow(1 + $t, -$np);
+        $b = pow(1 + $t, -$np - 1);
+
+        return ($pv*$t) - (($pp/$np)*(1 - $a)); 
+    }
+}
+    
+function calcularValorDerivadaFuncao($np, $pv, $pp, $t, $e){
+    $a = 0; 
+    $b = 0;
+
+    if($e) {
+        $a = pow(1 + $t, $np - 2);
+        $b = pow(1 + $t, $np - 1);
+
+        return $pv * ($b + ($t*$a*($np-1))) - ($pp*$b);
+    }
+    else {
+        $a = pow(1 + $t, -$np);
+        $b = pow(1 + $t, -$np - 1);
+
+        return $pv - ($pp*$b);
+    }
+}

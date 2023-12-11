@@ -23,7 +23,7 @@ else {
 const tableElement = document.getElementById("price-table");
 
 priceTableData.forEach(rowData => {
-    tableElement.appendChild(createTableRow(rowData));
+    //tableElement.appendChild(createTableRow(rowData));
 });
 
 /* --- Exibindo informações detalhadas --- */

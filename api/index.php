@@ -43,15 +43,19 @@
                 <th>Amortização</th>
                 <th>Saldo Devedor</th>
             </tr>
-            <tr>
-            <?php
-            foreach ($lista as $item) {
-                echo "<td>$item</td>";
-            }
-            ?>
-            </tr>
             
             <!-- Construída dinamicamente -->
+
+            <?php
+            foreach ($price_table_data as $row) {
+                echo '<tr>'
+                foreach ($row as $data) {
+                    echo "<td>$data</td>";
+                }
+                echo '</tr>'
+            }
+            ?>
+            
         </table>
     </div>
     
