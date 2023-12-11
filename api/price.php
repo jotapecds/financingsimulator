@@ -5,11 +5,11 @@ $TAX = $_GET['tax'];
 $PV = $_GET['pv'];
 $PP = $_GET['pp'];
 $PB = $_GET['pb'];
-$existe_entrada = isset($_GET['dp']) ? true : false;
+$existe_entrada = isset($_GET['dp']);
 
 $price_table_data = [];
 
-if(isset($NP) && isset($TAX) && isset($PV) && isset($PP) && isset($PB) && isset($existe_entrada)) {
+if(isset($NP) && isset($TAX) && isset($PV) && isset($PP) && isset($PB)) {
     $price_table_data = calculatePriceTable($NP, $PV, $PP, $TAX, $existe_entrada);
 }
 
@@ -82,7 +82,6 @@ function calculateInterestRate($np,$pv,$pp,$e) {
         $t = $t - ($funcao / $derivada);
         $i++;
     }
-   
     return $t;
 }
 
