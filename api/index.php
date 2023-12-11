@@ -48,11 +48,11 @@
 
             <?php
             foreach ($price_table_data as $row) {
-                echo '<tr>'
+                echo '<tr>';
                 foreach ($row as $data) {
                     echo "<td>$data</td>";
                 }
-                echo '</tr>'
+                echo '</tr>';
             }
             ?>
             
