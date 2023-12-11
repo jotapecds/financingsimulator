@@ -5,7 +5,7 @@ $TAX = $_GET['tax'];
 $PV = $_GET['pv'];
 $PP = $_GET['pp'];
 $PB = $_GET['pb'];
-$existe_entrada = $_GET['np'] != null;
+$existe_entrada = $_GET['dp'] != null;
 
 $price_table_data = [];
 
@@ -48,7 +48,7 @@ function calculatePriceTable($np, $pv, $pp, $t, $e) {
         $amortizacaoTotal += $amortizacao;
     }
 
-    array_push($matrizPrice, ["Total: {round($totalPago, 2)}, {round($jurosTotal, 2)}, {round($amortizacaoTotal,2)}, {round($saldoDevedor, 2)}"]);
+    array_push($matrizPrice, ["Total: ".round($totalPago, 2), round($jurosTotal, 2), round($amortizacaoTotal,2), round($saldoDevedor, 2)]);
 
     return $matrizPrice;
 }

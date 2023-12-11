@@ -18,18 +18,26 @@
     <div id="details-container">
         <h3 id="details-header"><span>&#8688;</span>Informações detalhadas</h3>
         <ul id="details-list" style="display: none;">
-            <li id="li-parc">Parcelas: </li>
-            <li id="li-taxa">Taxa de juros: </li>
-            <li id="li-vf">Valor Financiado: </li>
-            <li id="li-vv">Valor a voltar: </li>
-            <li id="li-mv">Meses a voltar: </li>
-            <li id="li-entrada">Entrada(?) : </li>
-            <br>
-            <li id="li-cf">Coeficiente de Financiamento: </li>
-            <li id="li-prest">Prestação: </li>
-            <li id="li-vp">Valor pago: </li>
-            <li id="li-tr">Taxa real: </li>
-            <li id="li-vc">Valor corrigido: </li>
+        <?php
+
+            $cf = calculateFinancingCoefficient($TAX, $NP);
+            $cf_rouded = round($cf);
+            $prest = roud($PV*$cf);
+            $tx_real = calculateInterestRate($NP,$PV,$PP,$existe_entrada) * 100;
+
+            echo "<li>Parcelas: {$NP}</li>
+                    <li>Taxa de juros: {$TAX}%</li>
+                    <li>Valor Financiado: {$PV}</li>
+                    <li>Valor a voltar: {$PP}</li>
+                    <li>Meses a voltar: {$PB}</li>
+                    <li>Entrada(?): {$existe_entrada}</li>
+                    <br>
+                    <li>Coeficiente de Financiamento: {$cf_rouded}</li>
+                    <li>Prestação: {$prest}</li>
+                    <li>Valor pago: </li>
+                    <li>Taxa real: {$tx_real}</li>
+                    <li>Valor corrigido: </li>";
+        ?>
         </ul>
     </div>
 
@@ -47,12 +55,12 @@
             <!-- Construída dinamicamente -->
 
             <?php
-            foreach ($price_table_data as $row) {
-                echo '<tr>';
-                foreach ($row as $data) {
-                    echo "<td>$data</td>";
-                }
-                echo '</tr>';
+                foreach ($price_table_data as $row) {
+                    echo '<tr>';
+                    foreach ($row as $data) {
+                        echo "<td>$data</td>";
+                    }
+                    echo '</tr>';
             }
             ?>
             
