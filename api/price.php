@@ -5,7 +5,7 @@ $TAX = $_GET['tax'];
 $PV = $_GET['pv'];
 $PP = $_GET['pp'];
 $PB = $_GET['pb'];
-$existe_entrada = $_GET['dp'] != null;
+$existe_entrada = isset($_GET['dp']) ? true : false;
 
 $price_table_data = [];
 
