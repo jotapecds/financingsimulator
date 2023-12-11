@@ -43,9 +43,9 @@ function calculatePriceTable($np, $pv, $pp, $t, $e) {
      
         array_push($matrizPrice, [$i, $pmt, $juros, $amortizacao, $saldoDevedor]);
 
-        $jurosTotal += Number($juros);
-        $totalPago += Number($pmt);
-        $amortizacaoTotal += Number($amortizacao);
+        $jurosTotal += $juros;
+        $totalPago += $pmt;
+        $amortizacaoTotal += $amortizacao;
     }
 
     array_push($matrizPrice, ["Total: {round($totalPago, 2)}, {round($jurosTotal, 2)}, {round($amortizacaoTotal,2)}, {round($saldoDevedor, 2)}"]);
