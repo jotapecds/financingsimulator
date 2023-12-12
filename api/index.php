@@ -25,7 +25,7 @@
             $prest = round($PV*$cf);
             $tx_real = calculateInterestRate($NP,$PV,$PP,$existe_entrada) * 100;
 
-            echo "<li>Parcelas: {$NP}</li> <li>Taxa de juros: {$TAX}%</li> <li>Valor Financiado: {$PV}</li> <li>Valor a voltar: {$PP}</li> <li>Meses a voltar: {$PB}</li> <li>Entrada(?): {$entrada}</li> <br> <li>Coeficiente de Financiamento: {$cf_rouded}</li> <li>Prestação: {$prest}</li> <li>Valor pago: </li> <li>Taxa real: {$tx_real}</li> <li>Valor corrigido: </li>";
+            echo "<li>Parcelas: {$NP}</li> <li>Taxa de juros: {$TAX}%</li> <li>Valor Financiado: {$PV}</li> <li>Valor a voltar: {$PP}</li> <li>Meses a voltar: {$PB}</li> <li>Entrada(?): {$entrada}</li> <br> <li>Coeficiente de Financiamento: {$cf_rouded}</li> <li>Prestação: {$prest}</li> <li>Taxa real: {$tx_real}</li> <li>Valor corrigido: $ 0,00 </li>";
         ?>
         </ul>
     </div>
